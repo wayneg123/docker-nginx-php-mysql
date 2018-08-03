@@ -32,6 +32,10 @@ Docker running Nginx, PHP-FPM, Composer, MySQL and PHPMyAdmin.
 
     When running, you can use docker commands for doing recurrent operations.
 
+8. [Set auth_basic](#set-auth_basic)
+   
+   You can set http basic auth.
+
 ___
 
 ## Install prerequisites
@@ -220,6 +224,18 @@ ___
     ```
 
 ___
+## Set auth_basic
+
+For example, `sudo apt-get install apache2-utils` on ubuntu, then `cd etc/nginx && htpasswd -b -c site_pass $username $password`.
+
+Uncomment 
+```
+auth_basic "input you user name and password"; 
+auth_basic_user_file /etc/nginx/conf/site_pass;
+```
+in `default.template.conf`.
+
+
 
 ## Use Makefile
 
