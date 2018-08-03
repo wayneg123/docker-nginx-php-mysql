@@ -24,6 +24,13 @@ services:
         volumes:
             - "./etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
             - "./web:/var/www/html"
+            - "./wui:/var/wui"
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        links:
+            - mysqldb
+        depends_on:
+            - mysqldb
     composer:
         image: "composer"
         volumes:
@@ -37,6 +44,7 @@ services:
         environment:
             # - PMA_ARBITRARY=1
             - PMA_HOST=${MYSQL_HOST}
+            # - MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         restart: always
         links:
             - mysqldb
